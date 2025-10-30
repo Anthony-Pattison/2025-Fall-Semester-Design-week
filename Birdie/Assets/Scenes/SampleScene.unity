@@ -246,6 +246,7 @@ MonoBehaviour:
   flapVolume: 1
   diveVolume: 0.7
   glideVolume: 0.6
+  AI: {fileID: 2129085257}
 --- !u!82 &27544487
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1163,11 +1164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80541d3d21d4fff4a94eae7dd5b99003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftDive: 0
-  RightDive: 0
-  WingFlap: 0
-  _values: []
-  timer: 0
+  LFTDive: 0
+  RIGDive: 0
+  flap: 0
 --- !u!4 &2129085258
 Transform:
   m_ObjectHideFlags: 0
