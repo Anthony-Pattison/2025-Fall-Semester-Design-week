@@ -43,6 +43,9 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float diveVolume = 0.7f;
     [SerializeField] private float glideVolume = 0.6f;
 
+    [Header("Linking Arduino")]
+    [SerializeField] ArduinoInput AI;
+
     private Rigidbody rb;
     private float currentVerticalVelocity;
     private float currentForwardSpeed;
@@ -80,8 +83,15 @@ public class BirdController : MonoBehaviour
     void HandleInput()
     {
         // Dive - Hold Spacebar
-        isDiving = Input.GetKey(KeyCode.Space);
-
+        if (AI.LFTDive && AI.RIGDive)
+        {
+            isDiving = true;
+        }
+        else
+        {
+            isDiving = false;
+        }
+            print(isDiving);
         // Play dive sound when starting to dive
         if (isDiving && !wasDivingLastFrame)
         {
@@ -90,7 +100,7 @@ public class BirdController : MonoBehaviour
         wasDivingLastFrame = isDiving;
 
         // Flap - Left Mouse Button only (with cooldown)
-        if (Input.GetMouseButtonDown(0))
+        if (AI.flap < -3)
         {
             float timeSinceLastFlap = Time.time - lastFlapTime;
             if (timeSinceLastFlap >= flapCooldown)
